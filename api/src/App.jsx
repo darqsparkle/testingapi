@@ -12,7 +12,7 @@ function App() {
     const data = { Name: name, Age: age, Email: email, Address: address };
 
     try {
-      const response = await fetch('http://localhost:5007/submit', {
+      const response = await fetch('https://<your-vercel-deployment-url>/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -20,6 +20,7 @@ function App() {
 
       if (response.ok) {
         alert('Data submitted successfully!');
+        // Clear form fields after submission
         setName('');
         setAge('');
         setEmail('');
@@ -38,16 +39,36 @@ function App() {
       <h1>Testing React Form with Google Sheets API</h1>
       <form onSubmit={handleSubmit}>
         <label>Name</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
         <label>Age</label>
-        <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
+        <input
+          type="number"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+          required
+        />
 
         <label>Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
         <label>Address</label>
-        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
+        <input
+          type="text"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          required
+        />
 
         <div>
           <button type="submit">Submit</button>
